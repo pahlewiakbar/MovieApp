@@ -61,6 +61,9 @@ class MovieView extends StatelessWidget {
                                   // Judul film yang sedang tayang.
                                   Text(
                                     '${movie.originalTitle}',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold),
                                   )

@@ -108,6 +108,9 @@ class ProfilView extends StatelessWidget {
                                     // Judul film dalam watchlist.
                                     Text(
                                       '${movie.originalTitle}',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -213,6 +216,9 @@ class ProfilView extends StatelessWidget {
                                     // Judul film favorit.
                                     Text(
                                       '${movie.originalTitle}',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
