@@ -13,7 +13,6 @@ class AutoLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     // Menginisialisasi controller untuk mengelola proses login.
     LoginController controller = LoginController();
-
     return FutureBuilder(
       // Menunggu selama 1 detik untuk menampilkan logo aplikasi.
       future: Future.delayed(const Duration(seconds: 1)),

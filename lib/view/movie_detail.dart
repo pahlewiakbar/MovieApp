@@ -33,9 +33,8 @@ class MovieDetail extends StatelessWidget {
                     CachedNetworkImage(
                       imageUrl:
                           'https://image.tmdb.org/t/p/w500${detail.backdropPath}',
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
                       errorWidget: (context, url, error) =>
                           const Text('Image not found'),
                     ),
@@ -152,10 +151,7 @@ class MovieDetail extends StatelessWidget {
                                             imageUrl:
                                                 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                                             placeholder: (context, url) =>
-                                                const Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            ),
+                                                const CircularProgressIndicator(),
                                             errorWidget: (context, url,
                                                     error) =>
                                                 const Text('Image not found'),

@@ -18,7 +18,6 @@ class ProfilView extends StatelessWidget {
     LoginController loginC = LoginController();
     MovieController movieC = MovieController();
     ProfilController profilC = ProfilController();
-
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
@@ -98,9 +97,7 @@ class ProfilView extends StatelessWidget {
                                         imageUrl:
                                             'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                                         placeholder: (context, url) =>
-                                            const Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
+                                            const CircularProgressIndicator(),
                                         errorWidget: (context, url, error) =>
                                             const Text('Image not found'),
                                       ),
@@ -205,9 +202,7 @@ class ProfilView extends StatelessWidget {
                                         imageUrl:
                                             'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                                         placeholder: (context, url) =>
-                                            const Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
+                                            const CircularProgressIndicator(),
                                         errorWidget: (context, url, error) =>
                                             const Text('Image not found'),
                                       ),
@@ -266,7 +261,7 @@ class ProfilView extends StatelessWidget {
             }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             return const Center(
-              child: Text('Error'),
+              child: Text('Terjadi Kesalahan'),
             );
           },
         ),

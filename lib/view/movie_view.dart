@@ -50,9 +50,7 @@ class MovieView extends StatelessWidget {
                                       imageUrl:
                                           'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                                       placeholder: (context, url) =>
-                                          const Center(
-                                              child:
-                                                  CircularProgressIndicator()),
+                                          const CircularProgressIndicator(),
                                       errorWidget: (context, url, error) =>
                                           const Text('Image not found'),
                                     ),
@@ -115,8 +113,7 @@ class MovieView extends StatelessWidget {
                     onTap: () => Get.to(() => const MovieDetail(),
                         transition: Transition.cupertino, arguments: popular),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 15),
+                      padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                           color: Colors.grey.shade300,
                           borderRadius: BorderRadius.circular(15)),
@@ -128,8 +125,8 @@ class MovieView extends StatelessWidget {
                             child: CachedNetworkImage(
                               imageUrl:
                                   'https://image.tmdb.org/t/p/w500${popular.posterPath}',
-                              placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator()),
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
                                   const Text('Image not found'),
                             ),
