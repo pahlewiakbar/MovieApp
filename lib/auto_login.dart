@@ -51,8 +51,9 @@ class AutoLogin extends StatelessWidget {
             // Jika pengambilan data selesai, tentukan tampilan berdasarkan hasilnya.
             if (snapshot.hasData) {
               return const HomeView();
+            } else {
+              return const LoginView();
             }
-            return const LoginView();
           },
         );
       },

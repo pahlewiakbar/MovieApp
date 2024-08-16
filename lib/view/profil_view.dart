@@ -90,77 +90,78 @@ class ProfilView extends StatelessWidget {
               return const Center(
                 child: Text('Belum ada data'),
               );
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: watchlist
-                    .map((movie) => GestureDetector(
-                          onTap: () => Get.to(() => const MovieDetail(),
-                              transition: Transition.cupertino,
-                              arguments: movie.id),
-                          child: Container(
-                            width: 150,
-                            margin: const EdgeInsets.only(right: 15),
-                            child: Column(
-                              children: [
-                                // Gambar poster film dalam watchlist.
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                    placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        const Text('Image not found'),
+            } else {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: watchlist
+                      .map((movie) => GestureDetector(
+                            onTap: () => Get.to(() => const MovieDetail(),
+                                transition: Transition.cupertino,
+                                arguments: movie.id),
+                            child: Container(
+                              width: 150,
+                              margin: const EdgeInsets.only(right: 15),
+                              child: Column(
+                                children: [
+                                  // Gambar poster film dalam watchlist.
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Text('Image not found'),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                // Judul film dalam watchlist.
-                                Text(
-                                  '${movie.originalTitle}',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                // Tombol untuk menghapus film dari watchlist.
-                                TextButton(
-                                    onPressed: () => showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            title: const Text('Peringatan'),
-                                            content: const Text(
-                                                'Apakah anda yakin ingin menghapus ini?'),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () =>
-                                                      profilC.removeWatchlist(
-                                                          movie.id!),
-                                                  child: const Text('Ya')),
-                                              TextButton(
-                                                  onPressed: () => Get.back(),
-                                                  child: const Text('Tidak',
-                                                      style: TextStyle(
-                                                          color: Colors.red)))
-                                            ],
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  // Judul film dalam watchlist.
+                                  Text(
+                                    '${movie.originalTitle}',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  // Tombol untuk menghapus film dari watchlist.
+                                  TextButton(
+                                      onPressed: () => showDialog(
+                                            context: context,
+                                            builder: (context) => AlertDialog(
+                                              title: const Text('Peringatan'),
+                                              content: const Text(
+                                                  'Apakah anda yakin ingin menghapus ini?'),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () =>
+                                                        profilC.removeWatchlist(
+                                                            movie.id!),
+                                                    child: const Text('Ya')),
+                                                TextButton(
+                                                    onPressed: () => Get.back(),
+                                                    child: const Text('Tidak',
+                                                        style: TextStyle(
+                                                            color: Colors.red)))
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                    child: const Text(
-                                      'Hapus',
-                                      style: TextStyle(color: Colors.red),
-                                    ))
-                              ],
+                                      child: const Text(
+                                        'Hapus',
+                                        style: TextStyle(color: Colors.red),
+                                      ))
+                                ],
+                              ),
                             ),
-                          ),
-                        ))
-                    .toList(),
-              ),
-            );
+                          ))
+                      .toList(),
+                ),
+              );
+            }
           },
         ),
         const SizedBox(
@@ -197,77 +198,78 @@ class ProfilView extends StatelessWidget {
               return const Center(
                 child: Text('Belum ada data'),
               );
-            }
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: favorite
-                    .map((movie) => GestureDetector(
-                          onTap: () => Get.to(() => const MovieDetail(),
-                              transition: Transition.cupertino,
-                              arguments: movie.id),
-                          child: Container(
-                            width: 150,
-                            margin: const EdgeInsets.only(right: 15),
-                            child: Column(
-                              children: [
-                                // Gambar poster film favorit.
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                    placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        const Text('Image not found'),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                // Judul film favorit.
-                                Text(
-                                  '${movie.originalTitle}',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                // Tombol untuk menghapus film dari favorit.
-                                TextButton(
-                                    child: const Text(
-                                      'Hapus',
-                                      style: TextStyle(color: Colors.red),
+            } else {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: favorite
+                      .map((movie) => GestureDetector(
+                            onTap: () => Get.to(() => const MovieDetail(),
+                                transition: Transition.cupertino,
+                                arguments: movie.id),
+                            child: Container(
+                              width: 150,
+                              margin: const EdgeInsets.only(right: 15),
+                              child: Column(
+                                children: [
+                                  // Gambar poster film favorit.
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Text('Image not found'),
                                     ),
-                                    onPressed: () => showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            title: const Text('Peringatan'),
-                                            content: const Text(
-                                                'Apakah anda yakin ingin menghapus ini?'),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () =>
-                                                      profilC.removeFavorite(
-                                                          movie.id!),
-                                                  child: const Text('Ya')),
-                                              TextButton(
-                                                  onPressed: () => Get.back(),
-                                                  child: const Text('Tidak',
-                                                      style: TextStyle(
-                                                          color: Colors.red)))
-                                            ],
-                                          ),
-                                        ))
-                              ],
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  // Judul film favorit.
+                                  Text(
+                                    '${movie.originalTitle}',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  // Tombol untuk menghapus film dari favorit.
+                                  TextButton(
+                                      child: const Text(
+                                        'Hapus',
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                      onPressed: () => showDialog(
+                                            context: context,
+                                            builder: (context) => AlertDialog(
+                                              title: const Text('Peringatan'),
+                                              content: const Text(
+                                                  'Apakah anda yakin ingin menghapus ini?'),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () =>
+                                                        profilC.removeFavorite(
+                                                            movie.id!),
+                                                    child: const Text('Ya')),
+                                                TextButton(
+                                                    onPressed: () => Get.back(),
+                                                    child: const Text('Tidak',
+                                                        style: TextStyle(
+                                                            color: Colors.red)))
+                                              ],
+                                            ),
+                                          ))
+                                ],
+                              ),
                             ),
-                          ),
-                        ))
-                    .toList(),
-              ),
-            );
+                          ))
+                      .toList(),
+                ),
+              );
+            }
           },
         ),
       ],
