@@ -17,45 +17,43 @@ class AutoLogin extends StatelessWidget {
       // Menunggu selama 1 detik untuk menampilkan logo aplikasi.
       future: Future.delayed(const Duration(seconds: 1)),
       builder: (context, snapshot) {
-        // Jika proses menampilkan logo selesai, cek status pengguna.
-        if (snapshot.connectionState == ConnectionState.done) {
-          return FutureBuilder(
-            // Memanggil metode untuk mendapatkan status login pengguna.
-            future: controller.getUser(),
-            builder: (context, snapshot) {
-              // Jika pengambilan data selesai, tentukan tampilan berdasarkan hasilnya.
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData) {
-                  return const HomeView();
-                } else {
-                  return const LoginView();
-                }
-              }
-              // Menampilkan indikator loading jika sedang dalam proses pengambilan data.
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Scaffold(
-                  body: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-              // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
+        // Menampilkan logo aplikasi saat proses penundaan masih berjalan.
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            body: Center(
+              child: Image.asset(
+                'asset/logo.png',
+                width: 100,
+              ),
+            ),
+          );
+        }
+        // Jika proses penundaan selesai, dapatkan status login pengguna.
+        return FutureBuilder(
+          future: controller.getUser(),
+          builder: (context, snapshot) {
+            // Menampilkan indikator loading jika sedang dalam proses pengambilan data.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+            // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
+            if (snapshot.hasError) {
               return const Scaffold(
                 body: Center(
                   child: Text('Terjadi Kesalahan'),
                 ),
               );
-            },
-          );
-        }
-        // Menampilkan logo aplikasi saat proses penundaan masih berjalan.
-        return Scaffold(
-          body: Center(
-            child: Image.asset(
-              'asset/logo.png',
-              width: 100,
-            ),
-          ),
+            }
+            // Jika pengambilan data selesai, tentukan tampilan berdasarkan hasilnya.
+            if (snapshot.hasData) {
+              return const HomeView();
+            }
+            return const LoginView();
+          },
         );
       },
     );

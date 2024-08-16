@@ -14,6 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
+      title: 'MovieApp',
       debugShowCheckedModeBanner: false,
       // Menentukan halaman awal aplikasi menggunakan AutoLogin.
       home: AutoLogin(),
