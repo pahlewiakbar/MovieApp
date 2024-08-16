@@ -50,7 +50,7 @@ class MovieView extends StatelessWidget {
                     .map((movie) => GestureDetector(
                           onTap: () => Get.to(() => const MovieDetail(),
                               transition: Transition.cupertino,
-                              arguments: movie),
+                              arguments: movie.id),
                           child: Container(
                             width: 170,
                             margin: const EdgeInsets.only(right: 20),
@@ -129,7 +129,7 @@ class MovieView extends StatelessWidget {
                 var popular = listPopular[index];
                 return GestureDetector(
                   onTap: () => Get.to(() => const MovieDetail(),
-                      transition: Transition.cupertino, arguments: popular),
+                      transition: Transition.cupertino, arguments: popular.id),
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(

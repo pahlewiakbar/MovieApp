@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/movie_controller.dart';
-import '../model/movie_model.dart';
 
 /// Tampilan detail film yang menampilkan informasi tentang film dan film serupa.
 class MovieDetail extends StatelessWidget {
@@ -11,19 +10,20 @@ class MovieDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mengambil data film dari arguments yang diterima dari Navigator.
-    Movie data = Get.arguments;
+    // Mengambil id film dari argument yang diterima dari Navigator.
+    var id = Get.arguments;
     // Menginisialisasi controller yang digunakan.
     MovieController controller = MovieController();
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: const Text('Movie Detail'),
       ),
       body: ListView(
         children: [
           // FutureBuilder untuk menampilkan informasi detail film.
           FutureBuilder(
-            future: controller.detailMovie(data.id!),
+            future: controller.detailMovie(id),
             builder: (context, snapshot) {
               // Menampilkan indikator loading jika masih dalam proses pengambilan data.
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -81,7 +81,7 @@ class MovieDetail extends StatelessWidget {
                               ),
                               Row(
                                 children: detail.genres!
-                                    .map((e) => Container(
+                                    .map((genre) => Container(
                                           padding: const EdgeInsets.all(5),
                                           margin:
                                               const EdgeInsets.only(right: 10),
@@ -91,7 +91,7 @@ class MovieDetail extends StatelessWidget {
                                                   BorderRadius.circular(7)),
                                           child: Center(
                                             child: Text(
-                                              '${e.name}',
+                                              '${genre.name}',
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             ),
@@ -130,7 +130,7 @@ class MovieDetail extends StatelessWidget {
                 ),
                 // FutureBuilder untuk menampilkan film serupa.
                 FutureBuilder(
-                  future: controller.similarMovie(data.id!),
+                  future: controller.similarMovie(id),
                   builder: (context, snapshot) {
                     // Menampilkan indikator loading jika masih dalam proses pengambilan data.
                     if (snapshot.connectionState == ConnectionState.waiting) {

@@ -98,7 +98,7 @@ class ProfilView extends StatelessWidget {
                     .map((movie) => GestureDetector(
                           onTap: () => Get.to(() => const MovieDetail(),
                               transition: Transition.cupertino,
-                              arguments: movie),
+                              arguments: movie.id),
                           child: Container(
                             width: 150,
                             margin: const EdgeInsets.only(right: 15),
@@ -205,7 +205,7 @@ class ProfilView extends StatelessWidget {
                     .map((movie) => GestureDetector(
                           onTap: () => Get.to(() => const MovieDetail(),
                               transition: Transition.cupertino,
-                              arguments: movie),
+                              arguments: movie.id),
                           child: Container(
                             width: 150,
                             margin: const EdgeInsets.only(right: 15),
