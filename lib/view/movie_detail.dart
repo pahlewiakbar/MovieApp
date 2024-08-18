@@ -13,7 +13,7 @@ class MovieDetail extends StatelessWidget {
     // Mengambil id film dari argument yang diterima dari Navigator.
     var id = Get.arguments;
     // Menginisialisasi controller yang digunakan.
-    MovieController controller = MovieController();
+    var controller = MovieController();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -25,16 +25,16 @@ class MovieDetail extends StatelessWidget {
           FutureBuilder(
             future: controller.detailMovie(id),
             builder: (context, snapshot) {
-              // Menampilkan indikator loading jika masih dalam proses pengambilan data.
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
               // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
               if (snapshot.hasError) {
                 return const Center(
                   child: Text('Terjadi Kesalahan'),
+                );
+              }
+              // Menampilkan indikator loading jika masih dalam proses pengambilan data.
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
               }
               // Menampilkan data jika proses pengambilan data telah selesai.
@@ -132,16 +132,16 @@ class MovieDetail extends StatelessWidget {
                 FutureBuilder(
                   future: controller.similarMovie(id),
                   builder: (context, snapshot) {
-                    // Menampilkan indikator loading jika masih dalam proses pengambilan data.
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
                     // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
                     if (snapshot.hasError) {
                       return const Center(
                         child: Text('Terjadi Kesalahan'),
+                      );
+                    }
+                    // Menampilkan indikator loading jika masih dalam proses pengambilan data.
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
                     }
                     // Menampilkan data jika proses pengambilan data telah selesai.

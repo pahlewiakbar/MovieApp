@@ -16,6 +16,7 @@ class MainApp extends StatelessWidget {
     return const GetMaterialApp(
       title: 'MovieApp',
       debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.cupertino,
       // Menentukan halaman awal aplikasi menggunakan AutoLogin.
       home: AutoLogin(),
     );

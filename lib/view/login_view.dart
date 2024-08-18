@@ -8,7 +8,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginController controller = LoginController();
+    var controller = LoginController();
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -15,9 +15,9 @@ class ProfilView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Menginisialisasi controller yang digunakan.
-    LoginController loginC = LoginController();
-    MovieController movieC = MovieController();
-    ProfilController profilC = ProfilController();
+    var loginC = LoginController();
+    var movieC = MovieController();
+    var profilC = ProfilController();
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
@@ -25,16 +25,16 @@ class ProfilView extends StatelessWidget {
         FutureBuilder(
           future: loginC.getUser(),
           builder: (context, snapshot) {
-            // Menampilkan indikator loading jika data sedang diambil.
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             if (snapshot.hasError) {
               return const Center(
                 child: Text('Terjadi Kesalahan'),
+              );
+            }
+            // Menampilkan indikator loading jika data sedang diambil.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
             // Menampilkan data jika proses pengambilan data telah selesai.
@@ -71,16 +71,16 @@ class ProfilView extends StatelessWidget {
         FutureBuilder(
           future: movieC.watchlistMovie(),
           builder: (context, snapshot) {
-            // Menampilkan indikator loading jika data sedang diambil.
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             if (snapshot.hasError) {
               return const Center(
                 child: Text('Terjadi Kesalahan'),
+              );
+            }
+            // Menampilkan indikator loading jika data sedang diambil.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
             // Menampilkan data jika proses pengambilan data telah selesai.
@@ -97,7 +97,6 @@ class ProfilView extends StatelessWidget {
                   children: watchlist
                       .map((movie) => GestureDetector(
                             onTap: () => Get.to(() => const MovieDetail(),
-                                transition: Transition.cupertino,
                                 arguments: movie.id),
                             child: Container(
                               width: 150,
@@ -179,16 +178,16 @@ class ProfilView extends StatelessWidget {
         FutureBuilder(
           future: movieC.favoriteMovie(),
           builder: (context, snapshot) {
-            // Menampilkan indikator loading jika data sedang diambil.
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             if (snapshot.hasError) {
               return const Center(
                 child: Text('Terjadi Kesalahan'),
+              );
+            }
+            // Menampilkan indikator loading jika data sedang diambil.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
             // Menampilkan data jika proses pengambilan data telah selesai.
@@ -205,7 +204,6 @@ class ProfilView extends StatelessWidget {
                   children: favorite
                       .map((movie) => GestureDetector(
                             onTap: () => Get.to(() => const MovieDetail(),
-                                transition: Transition.cupertino,
                                 arguments: movie.id),
                             child: Container(
                               width: 150,

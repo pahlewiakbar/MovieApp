@@ -12,7 +12,7 @@ class AutoLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Menginisialisasi controller untuk mengelola proses login.
-    LoginController controller = LoginController();
+    var controller = LoginController();
     return FutureBuilder(
       // Menunggu selama 1 detik untuk menampilkan logo aplikasi.
       future: Future.delayed(const Duration(seconds: 1)),
@@ -32,19 +32,19 @@ class AutoLogin extends StatelessWidget {
         return FutureBuilder(
           future: controller.getUser(),
           builder: (context, snapshot) {
-            // Menampilkan indikator loading jika sedang dalam proses pengambilan data.
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             if (snapshot.hasError) {
               return const Scaffold(
                 body: Center(
                   child: Text('Terjadi Kesalahan'),
+                ),
+              );
+            }
+            // Menampilkan indikator loading jika sedang dalam proses pengambilan data.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
                 ),
               );
             }

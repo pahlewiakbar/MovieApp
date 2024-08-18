@@ -12,7 +12,7 @@ class MovieView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Menginisialisasi controller untuk mengakses data film.
-    MovieController controller = MovieController();
+    var controller = MovieController();
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
@@ -28,16 +28,16 @@ class MovieView extends StatelessWidget {
         FutureBuilder(
           future: controller.playMovie(),
           builder: (context, snapshot) {
-            // Menampilkan indikator loading jika masih dalam proses pengambilan data.
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             if (snapshot.hasError) {
               return const Center(
                 child: Text('Terjadi Kesalahan'),
+              );
+            }
+            // Menampilkan indikator loading jika masih dalam proses pengambilan data.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
             // Menampilkan data jika proses pengambilan data telah selesai.
@@ -49,7 +49,6 @@ class MovieView extends StatelessWidget {
                 children: nowPlay
                     .map((movie) => GestureDetector(
                           onTap: () => Get.to(() => const MovieDetail(),
-                              transition: Transition.cupertino,
                               arguments: movie.id),
                           child: Container(
                             width: 170,
@@ -102,19 +101,19 @@ class MovieView extends StatelessWidget {
         FutureBuilder(
           future: controller.popularMovie(),
           builder: (context, snapshot) {
-            // Menampilkan indikator loading jika masih dalam proses pengambilan data.
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
             // Menampilkan pesan kesalahan jika terjadi masalah dalam pengambilan data.
             if (snapshot.hasError) {
               return const Center(
                 child: Text('Terjadi Kesalahan'),
               );
             }
-            // Menampilkan data jika proses pengambilan data telah selesai
+            // Menampilkan indikator loading jika masih dalam proses pengambilan data.
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            // Menampilkan data jika proses pengambilan data telah selesai.
             var listPopular = snapshot.data!;
             return GridView.builder(
               shrinkWrap: true,
@@ -128,8 +127,8 @@ class MovieView extends StatelessWidget {
               itemBuilder: (context, index) {
                 var popular = listPopular[index];
                 return GestureDetector(
-                  onTap: () => Get.to(() => const MovieDetail(),
-                      transition: Transition.cupertino, arguments: popular.id),
+                  onTap: () =>
+                      Get.to(() => const MovieDetail(), arguments: popular.id),
                   child: Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(

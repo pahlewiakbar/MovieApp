@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    LoginController controller = LoginController();
+    var controller = LoginController();
     return Scaffold(
       appBar: AppBar(
         title: const Text('MovieApp'),

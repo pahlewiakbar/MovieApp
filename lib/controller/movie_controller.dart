@@ -8,7 +8,7 @@ import '../model/movie_model.dart';
 
 /// Controller untuk manajemen data film dari API The Movie Database (TMDb).
 class MovieController {
-  String baseUrl = 'https://api.themoviedb.org/3';
+  var baseUrl = 'https://api.themoviedb.org/3';
   var headers = {
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTExYWYzZDgyMmFkYzcxZTE3N2Y2M2ZjMDdhY2Y5YiIsIm5iZiI6MTcyMjk0ODMyNi45MzgwNTMsInN1YiI6IjY2ODNhMDJmMTJmNjdkYjRhZjcwMTQ2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AUdVfgEZd9wBBps-QPNpYBZV30PczN315hEcrgWP4fI',

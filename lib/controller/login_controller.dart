@@ -9,7 +9,7 @@ import '../view/login_view.dart';
 
 /// Controller untuk manajemen login dan logout pengguna.
 class LoginController {
-  String baseUrl = 'https://api.themoviedb.org/3';
+  var baseUrl = 'https://api.themoviedb.org/3';
   var headers = {
     'Authorization':
         'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNTExYWYzZDgyMmFkYzcxZTE3N2Y2M2ZjMDdhY2Y5YiIsIm5iZiI6MTcyMjk0ODMyNi45MzgwNTMsInN1YiI6IjY2ODNhMDJmMTJmNjdkYjRhZjcwMTQ2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AUdVfgEZd9wBBps-QPNpYBZV30PczN315hEcrgWP4fI',
@@ -41,7 +41,7 @@ class LoginController {
     if (session != null) {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setString('session', id);
-      Get.offAll(() => const HomeView(), transition: Transition.cupertino);
+      Get.offAll(() => const HomeView());
       Get.snackbar('Login', 'Berhasil Login');
     } else {
       Get.snackbar('Terjadi Kesalahan', 'Gagal login');
@@ -65,7 +65,7 @@ class LoginController {
       SharedPreferences pref = await SharedPreferences.getInstance();
       await pref.remove('session');
       Get.snackbar('Logout', 'Berhasil Logout');
-      Get.offAll(() => const LoginView(), transition: Transition.cupertino);
+      Get.offAll(() => const LoginView());
     } catch (e) {
       Get.snackbar('Terjadi Kesalahan', 'Gagal logout');
     }
