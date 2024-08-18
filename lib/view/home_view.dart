@@ -14,12 +14,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  var controller = LoginController();
   List homeWidget = [const MovieView(), const ProfilView()];
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
-    var controller = LoginController();
     return Scaffold(
       appBar: AppBar(
         title: const Text('MovieApp'),
