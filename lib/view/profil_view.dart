@@ -94,6 +94,7 @@ class ProfilView extends StatelessWidget {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: watchlist
                       .map((movie) => GestureDetector(
                             onTap: () => Get.to(() => const MovieDetail(),
@@ -201,6 +202,7 @@ class ProfilView extends StatelessWidget {
               return SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: favorite
                       .map((movie) => GestureDetector(
                             onTap: () => Get.to(() => const MovieDetail(),

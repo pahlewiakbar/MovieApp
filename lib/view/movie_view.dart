@@ -46,6 +46,7 @@ class MovieView extends StatelessWidget {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: nowPlay
                     .map((movie) => GestureDetector(
                           onTap: () => Get.to(() => const MovieDetail(),
@@ -115,6 +116,7 @@ class MovieView extends StatelessWidget {
             }
             // Menampilkan data jika proses pengambilan data telah selesai.
             var listPopular = snapshot.data!;
+            var limit = listPopular.take(20).length;
             return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -123,7 +125,7 @@ class MovieView extends StatelessWidget {
                   childAspectRatio: 0.5,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10),
-              itemCount: listPopular.take(20).length,
+              itemCount: limit,
               itemBuilder: (context, index) {
                 var popular = listPopular[index];
                 return GestureDetector(
